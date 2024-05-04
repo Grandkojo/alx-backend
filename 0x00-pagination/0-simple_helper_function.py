@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-def index_range(page: int, page_size: int) -> int:
+def index_range(page: int, page_size: int) -> tuple:
     """
     Args:
     - page: page to to be retrieved

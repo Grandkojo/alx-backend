@@ -42,13 +42,15 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            assert isinstance(page, int) and page > 0
-            assert isinstance(page_size, int) and page_size > 0
-            
-            total_size = len(self.dataset())
-            total_pages = (total_size + page_size - 1) // page_size
-            
-            if (page > total_pages and page_size > total_size):
-                return []
-            
-            index_range(page, page_size)
+        """returns appropriate page of the csv"""
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
+
+        total_size = len(self.dataset())
+        total_pages = (total_size + page_size - 1) // page_size
+
+        if (page > total_pages and page_size > total_size):
+            return []
+
+        start, end = index_range(page, page_size)
+        return self.dataset()[start:end]
