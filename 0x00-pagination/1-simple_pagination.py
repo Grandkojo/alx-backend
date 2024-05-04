@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""a module for simple pagination"""
 
 
 import csv
@@ -14,10 +15,8 @@ def index_range(page: int, page_size: int) -> int:
     
     Returns a tuple of size two containing a start index and an end index
     """
-    
     start_index = (page - 1)* page_size
     end_index = start_index + page_size
-    
     return (start_index, end_index)
 
 
@@ -43,6 +42,7 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """returns appropriate page of the csv"""
+        assert isinstance(page, int)
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
 
