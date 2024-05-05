@@ -1,24 +1,16 @@
 #!/usr/bin/env python3
-"""a module for simple pagination"""
-
+"""This is a simple paginations"""
 
 import csv
 import math
 from typing import List
 
 
-def index_range(page: int, page_size: int) -> int:
-    """
-    Args:
-    - page: page to to be retrieved
-    -page_size: size of the page
-
-    Returns a tuple of size two containing a start index and an end index
-    """
-    start_index = (page - 1) * page_size
-    # end_index = start_index + page_size
-    end_index = page * page_size
-    return (start_index, end_index)
+def index_range(page: int, page_size: int) -> tuple:
+    """A function to calcualt ethe start and end of a page"""
+    start: int = (page - 1) * page_size
+    end: int = page * page_size
+    return start, end
 
 
 class Server:
@@ -41,31 +33,21 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """returns appropriate page of the csv"""
-        assert isinstance(page, int)
+        """Returns sthe appropriate page of the dataser"""
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-
-        total_size = len(self.dataset())
-        total_pages = (total_size + page_size - 1) // page_size
-
-        if (page > total_pages and page_size > total_size):
-            return []
-
         start, end = index_range(page, page_size)
         return self.dataset()[start:end]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """returns data  from dataset with hypermedia"""
-        data = self.dataset()
-        total_pages = (len(data) + page_size - 1) // page_size
-        retrieved_data_set = self.get_page(page, page_size)
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+        """Return the dictionary of paginaition resuls"""
+        data = self.get_page(page, page_size)
+        total_pages = math.ceil(len(self.dataset()) / page_size)
         return {
-         'page_size': len(retrieved_data_set),
-         'page': page,
-         'data': retrieved_data_set,
-         'next_page': f"{min(page + 1, total_pages)}" if
-                      page <= total_pages else None,
-         'prev_page': f"{max(page - 1, 1)}" if page > 0 else None,
-         'total_pages': total_pages
-        }
+                "page_size": len(data),
+                "page": page,
+                "data": data,
+                "next_page": page + 1 if page + 1 <= total_pages else None,
+                "prev_page": page - 1 if page - 1 > 0 else None,
+                "total_pages": total_pages,
+                }
