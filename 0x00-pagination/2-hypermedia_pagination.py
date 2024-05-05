@@ -60,7 +60,7 @@ class Server:
         total_pages = (len(data) + page_size - 1) // page_size
         retrieved_data_set = self.get_page(page, page_size)
         return {
-         'page_size': page_size,
+         'page_size': len(retrieved_data_set),
          'page': page,
          'data': retrieved_data_set,
          'next_page': f"{min(page + 1, total_pages)}" if
