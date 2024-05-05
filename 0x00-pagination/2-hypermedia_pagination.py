@@ -64,7 +64,7 @@ class Server:
          'page': page,
          'data': retrieved_data_set,
          'next_page': f"{min(page + 1, total_pages)}" if
-                      page < total_pages else None,
-         'prev_page': f"{max(page - 1, 1)}" if page > 1 else None,
+                      page <= total_pages else None,
+         'prev_page': f"{max(page - 1, 1)}" if page > 0 else None,
          'total_pages': total_pages
         }
