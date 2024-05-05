@@ -12,13 +12,12 @@ def index_range(page: int, page_size: int) -> int:
     Args:
     - page: page to to be retrieved
     -page_size: size of the page
-    
+
     Returns a tuple of size two containing a start index and an end index
     """
-    start_index = (page - 1)* page_size
+    start_index = (page - 1) * page_size
     end_index = start_index + page_size
     return (start_index, end_index)
-
 
 
 class Server:
@@ -54,6 +53,7 @@ class Server:
 
         start, end = index_range(page, page_size)
         return self.dataset()[start:end]
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
         """returns data  from dataset with hypermedia"""
         data = self.dataset()
@@ -63,7 +63,8 @@ class Server:
          'page_size': page_size,
          'page': page,
          'data': retrieved_data_set,
-         'next_page': f"{min(page + 1, total_pages)}" if page < total_pages else None,
+         'next_page': f"{min(page + 1, total_pages)}" if
+                      page < total_pages else None,
          'prev_page': f"{max(page - 1, 1)}" if page > 1 else None,
          'total_pages': total_pages
         }

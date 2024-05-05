@@ -41,7 +41,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        """a funtion that returns index, next index and page size to be deletion resilient"""
+        """returns index, next index and page size to be deletion resilient"""
         assert isinstance(index, int) and index >= 0
         assert isinstance(page_size, int) and page_size > 0
         indexed_data = self.indexed_dataset()
