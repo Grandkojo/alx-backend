@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""This is a simple paginations"""
+"""This is a simple pagination"""
 
 import csv
 import math
