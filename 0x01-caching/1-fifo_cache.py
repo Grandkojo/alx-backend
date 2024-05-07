@@ -17,13 +17,14 @@ class FIFOCache(BaseCaching):
         self.cache_data = {}
 
     def put(self, key, item):
+        """put items in cache using FIFO"""
         if key is None or item is None:
             return
         self.cache_data[key] = item
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             oldest_key = next(iter(self.cache_data))
             del self.cache_data[oldest_key]
-            print("DISCARD: {}\n".format(oldest_key))
+            print("DISCARD: {}".format(oldest_key))
 
     def get(self, key):
         """get the value of the key"""
