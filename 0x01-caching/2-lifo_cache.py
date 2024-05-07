@@ -13,19 +13,17 @@ class LIFOCache(BaseCaching):
         """ Initializing
         """
         super().__init__()
-        self.cache_data = {}
+        self.stack = []
 
     def put(self, key, item):
         """place the key and item using lifo method"""
-        if key is None or item is None:
-            return
-        self.cache_data[key] = item
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            keys = list(self.cache_data.keys())
-            last_key = [keys[-1]]
-            print(last_key)
-            del self.cache_data[last_key]
-            print("DISCARD: {}".format(last_key))
+        if key is not None and item is not None:
+            self.cache_data[key] = item
+            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                k = self.stack.pop()
+                del self.cache_data[k]
+                print(f"DISCARD: {k}")
+            self.stack.append(key)
 
     def get(self, key):
         """get the value of the key"""
