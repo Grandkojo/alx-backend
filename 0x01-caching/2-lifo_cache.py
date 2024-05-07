@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
-""" FIFO cache
+""" LIFO cache
 """
 
 
 from base_caching import BaseCaching
 
 
-class FIFOCache(BaseCaching):
-    """ FIFO cache
-    """
-
+class LIFOCache(BaseCaching):
+    """LIFO caching class"""
+    
     def __init__(self):
-        """ Initiliaze
+        """ Initializing
         """
         super().__init__()
         self.cache_data = {}
 
     def put(self, key, item):
+        """place the key and item using lifo method"""
         if key is None or item is None:
             return
         self.cache_data[key] = item
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            oldest_key = next(iter(self.cache_data))
-            print("HO")
-            print(oldest_key)
-            del self.cache_data[oldest_key]
-            print("DISCARD: {}\n".format(oldest_key))
+            keys = list(self.cache_data.keys())
+            last_key = [keys[-1]]
+            print(last_key)
+            del self.cache_data[last_key]
+            print("DISCARD: {}".format(last_key))
 
     def get(self, key):
         """get the value of the key"""
