@@ -17,6 +17,7 @@ class FIFOCache(BaseCaching):
         self.cache_data = {}
 
     def put(self, key, item):
+        """put items in cache using FIFO"""
         if key is None or item is None:
             return
         self.cache_data[key] = item
@@ -25,7 +26,7 @@ class FIFOCache(BaseCaching):
             print("HO")
             print(oldest_key)
             del self.cache_data[oldest_key]
-            print("DISCARD: {}\n".format(oldest_key))
+            print("DISCARD: {}".format(oldest_key))
 
     def get(self, key):
         """get the value of the key"""
