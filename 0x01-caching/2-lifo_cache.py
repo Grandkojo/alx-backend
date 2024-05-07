@@ -8,7 +8,6 @@ from base_caching import BaseCaching
 
 class LIFOCache(BaseCaching):
     """LIFO caching class"""
-    
     def __init__(self):
         """ Initializing
         """

@@ -17,6 +17,7 @@ class FIFOCache(BaseCaching):
         self.cache_data = {}
 
     def put(self, key, item):
+        """place items in cache usng fifo"""
         if key is None or item is None:
             return
         self.cache_data[key] = item
