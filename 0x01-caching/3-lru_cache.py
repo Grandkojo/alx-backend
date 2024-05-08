@@ -12,6 +12,7 @@ class LRUCache(BaseCaching):
         """initialising"""
         super().__init__()
         self.lru = []
+
     def put(self, key, item):
         """put the item in cache using lru method"""
         if key is not None and item is not None:
