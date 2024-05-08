@@ -12,6 +12,7 @@ class MRUCache(BaseCaching):
         """initialising"""
         super().__init__()
         self.mru = []
+
     def put(self, key, item):
         """put the item in cache using mru method"""
         if key is not None and item is not None:
