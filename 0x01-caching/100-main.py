@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 """ 100-main """
 LFUCache = __import__('100-lfu_cache').LFUCache
 
