@@ -2,7 +2,10 @@
 """the flask app module"""
 
 
-from typing import Text
+from typing import (
+    Text,
+    Optional
+)
 from flask import Flask, render_template
 from flask_babel import Babel
 from flask import request
@@ -23,7 +26,8 @@ class Config:
 app.config.from_object(Config)
 
 
-def get_locale() -> Text:
+@babel.localeselector
+def get_locale() -> Optional[str]:
     """get the locale from the request
     """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
