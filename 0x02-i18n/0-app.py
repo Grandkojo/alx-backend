@@ -1,4 +1,6 @@
 #!usr/bin/env python3
+"""the flask app module"""
+
 
 from flask import Flask, render_template
 
