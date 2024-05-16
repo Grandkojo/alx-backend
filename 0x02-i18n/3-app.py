@@ -9,7 +9,7 @@ from typing import (
 from flask import Flask, render_template
 from flask_babel import Babel
 from flask import request
-from flask import _
+from flask_babel import _
 
 
 app = Flask(__name__)
